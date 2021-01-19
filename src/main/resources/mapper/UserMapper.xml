@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxc.mapper.UserMapper">
+
+    <!--写crud对应的语句，实现具体操作-->
+
+    <!--注册用户，将传递时参数添加到用户表中-->
+    <insert id="addUser" parameterType="com.zxc.pojo.Users">
+        INSERT INTO users(user_tel, user_email, user_pwd) VALUE (#{user_tel},#{user_email},#{user_pwd})
+
+    </insert>
+
+</mapper>

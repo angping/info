@@ -7,9 +7,44 @@
 	<link rel="stylesheet" type="text/css" href="css/register.css">
 	<link rel="shortcut icon" href="img/index/favicon.ico">
 	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/register.js"></script>
+	<!--<script type="text/javascript" src="js/register.js"></script>-->
 	<!--引入jQuery插件-->
 	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+
+	<script type="text/javascript">
+		$(function () {  //先将文档加载进来
+			$("#registerBtn").click(function () { //注册按钮点击事件
+				var user_tel=$("input[name=user_tel]").val();
+				var user_email=$("input[name=user_email]").val();
+				var user_pwd=$("input[name=user_pwd]").val();
+				var user={user_tel:user_tel,user_email:user_email,user_pwd:user_pwd};
+
+
+				//ajax请求，异步提交
+				$.ajax({
+					url:"/register", //提交地址
+					type:"post",  //提交方式
+					data:user, //提交数据
+					dataType:"json", //响应类型json\html\script\txt
+					success:function (response) { //回调函数
+							if(response.code === 200){
+
+							    //登录成功跳转
+                                alert(response.msg);
+                                console.log(response.msg);
+                                alert("注册成功");
+							   window.location.href="/login.html";
+
+							}
+							if(response.code === 500){
+							    alert(response.msg)
+							}
+                    }
+				})
+
+            })
+        })
+	</script>
 </head>
 <body>
 	<header id="header" class="t">
@@ -24,14 +59,13 @@
 
 		<div id="mianC" class="c">
 			<span id="loginTips">已有华为账号&nbsp;<a href="login.html" title="登录">登录></a></span>
-<form action="register" method="post">
 			<div class="inputBox">
 				<div class="inputKind" id="phoneNum">
 					手机号码
 				</div>
 				<input id="phoneNumInput" class="input" type="text" name="user_tel" placeholder="请输入号码号码">
 			</div>
-			<p class="errorTips" id="phoneNumTips">	
+			<p class="errorTips" id="phoneNumTips">
 			</p>
 
 			<div class="inputBox">
@@ -41,7 +75,7 @@
 				<input id="emailInput" class="input" type="text" name="user_email" placeholder="请输入邮件地址">
 			</div>
 			<p class="errorTips" id="emailTips">
-				
+
 			</p>
 
 			<div class="inputBox">
@@ -51,7 +85,7 @@
 				<input id="passwdInput" class="input" type="password" name="user_pwd" placeholder="请输入密码">
 			</div>
 			<p class="errorTips" id="passwdTips">
-				
+
 			</p>
 
 			<div class="inputBox">
@@ -61,13 +95,12 @@
 				<input id="againPasswdInput" class="input" type="password" name="" placeholder="请再次输入密码">
 			</div>
 			<p class="errorTips" id="againPasswdTips">
-				
+
 			</p>
 
 			<p id="registerBtnBox">
 				<button  type="submit" id="registerBtn">注册</button>
 			</p>
-</form>
 		</div>
 	</main>
 
@@ -81,7 +114,7 @@
 			<p id="declaration">Copyright © 2011-2018  华为软件技术有限公司  版权所有  保留一切权利  苏B2-20070200号 | 苏ICP备09062682号-9
 			</p>
 		</div>
-		
+
 	</footer>
 </body>
 </html>
