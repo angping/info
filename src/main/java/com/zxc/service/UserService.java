@@ -2,6 +2,8 @@ package com.zxc.service;
 
 import com.zxc.pojo.Users;
 
+import java.security.NoSuchAlgorithmException;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,4 +21,13 @@ public interface UserService {
      * @return
      */
     int addUser(Users user);
+
+
+    /**根据电话和密码查找用户
+     *
+     * @param user
+     * @return
+     */
+    Users findUserByTelAndPwd(Users user) throws NoSuchAlgorithmException;
+    //Users 返回的User信息 括号中传递的参数
 }

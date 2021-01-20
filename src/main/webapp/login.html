@@ -6,8 +6,35 @@
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link rel="shortcut icon" href="img/index/favicon.ico">
-	<script type="text/javascript" src="js/jquery.js"></script>
+
+	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
+
+
+	<script type="text/javascript">
+        $(function(){//先将文档加载进来
+            $("#loginBtn").click(function(){ //注册按钮点击事件
+                $.ajax({
+                    url:"/login",
+                    type:"post",
+                    data:$("#myform").serialize(),
+                    dataType:"json",
+                    success:function(response){
+                        if(response.code == 200){//登录成功
+                            //将登录后信息存在浏览器本地，跳转到登录后首页可以获取。
+                            sessionStorage.setItem("user",response.data.user_tel);
+                            var users = sessionStorage.getItem('user');
+                            window.location.href = "/index.html";
+                        }
+                        if(response.code == 500){
+                            alert(response.msg)
+                        }
+                    }
+                })
+
+            });
+        })
+	</script>
 </head>
 <body>
 	<header id="header" class="t">
@@ -21,7 +48,7 @@
 	<main id="mian">
 		<section id="tipsBox" class="t">
 			<span>依据《网络安全法》，为保障您的帐号安全与正常使用，请尽快绑定您的手机号，感谢您的理解及支持！</span>
-		</section> 		
+		</section>
 		<section id="mainPage" class="t">
 			<div id="mainPageC">
 				<div class="loginBox">
@@ -35,11 +62,13 @@
 							<i id="errorIcon"></i>
 							<span id="errorTips"></span>
 						</p>
+
+						<form id="myform">
 						<p id="account">
-							<input id="accountInput" type="text" name="" placeholder="手机号/邮件/华为号">
+							<input id="accountInput" type="text" name="user_tel" placeholder="手机号/邮件/华为号">
 						</p>
 						<p id="passwd">
-							<input id="passwdInput" type="password" name="" placeholder="密码">
+							<input id="passwdInput" type="password" name="user_pwd" placeholder="密码">
 						</p>
 
 						<p id="messageLoginTips">
@@ -48,8 +77,10 @@
 							</a>
 						</p>
 						<p>
-							<button id="loginBtn">登录</button>
+							<!--<button id="loginBtn">登录</button>-->
+							<input type="button" id="loginBtn" value="登录">
 						</p>
+						</form>
 
 						<label id="remember">
 							<i id="rememberCheckBox"></i>
@@ -72,7 +103,7 @@
 						<p id="botomIcons">
 							<a href="" title=""><span class="botomLogo" id="qq"></span></a>
 							<a href="" title=""><span class="botomLogo" id="alipay"></span></a>
-							<a href="" title=""><span class="botomLogo" id="weChat"></span></a>	
+							<a href="" title=""><span class="botomLogo" id="weChat"></span></a>
 						</p>
 					</div>
 
@@ -84,7 +115,7 @@
 							<div id="phoneIconBox">
 								<img src="img/loginAndRegister/phone.png" alt="">
 							</div>
-						</div>						
+						</div>
 
 						<div id="bottomTipsBox">
 							<p>使用
@@ -95,8 +126,8 @@
 						</div>
 					</div>
 				</div>
-			</div>			
-		</section>	
+			</div>
+		</section>
 	</main>
 
 	<footer id="footer" class="t">

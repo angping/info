@@ -12,4 +12,6 @@ import com.zxc.pojo.Users;
 public interface UserMapper {
 
     int addUser(Users user);
+
+    Users findUserByTelAndPwd(Users user);
 }

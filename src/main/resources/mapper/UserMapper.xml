@@ -10,5 +10,10 @@
         INSERT INTO users(user_tel, user_email, user_pwd) VALUE (#{user_tel},#{user_email},#{user_pwd})
 
     </insert>
+    
+    <!--登录功能-->
+    <select id="findUserByTelAndPwd" parameterType="com.zxc.pojo.Users" resultType="com.zxc.pojo.Users">
+        select * from users WHERE user_tel=#{user_tel} AND user_pwd=#{user_pwd}
+    </select>
 
 </mapper>

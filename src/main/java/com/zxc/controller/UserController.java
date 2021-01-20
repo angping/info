@@ -1,6 +1,5 @@
 package com.zxc.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import com.zxc.common.R;
 import com.zxc.pojo.Users;
 import com.zxc.service.UserService;
@@ -9,10 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,25 +24,26 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     //注解   依赖注入
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody //返回json数据
     //public void register(Users users,HttpServletResponse response){//注册   Servlet中如何跳转页面
-   // public ModelAndView register(Users users){//注册
-    public R register(Users users){//注册
+    // public ModelAndView register(Users users){//注册
+    public R register(Users users) {//注册
 
         //继续将参数传递给业务逻辑层,后续进行注册功能，如果注册成功跳转到登录页面，否则返回注册页面
 
-            R r=new R();
+        R r = new R();
 
         try {
-            int result=userService.addUser(users);   //传递参数
-            if(result>0){//注册成功
+            int result = userService.addUser(users);   //传递参数
+            if (result > 0) {//注册成功
                 //跳转登录页面 Servlet中如何跳转页面 1、重定向 2、转发
-             //  response.sendRedirect("login.html");
+                //  response.sendRedirect("login.html");
 
                 //ModelAndView modelAndView=new ModelAndView("/login.html");
-               // return modelAndView;
+                // return modelAndView;
 
                 //return "响应页面地址";
                 //return "redirect:/login.html";  //重定向到登录页面，不走视图解析器（不走前缀和后缀）
@@ -56,13 +54,41 @@ public class UserController {
 
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("===系统开小差了，请联系管理员===");
             r.setCode(500);
             r.setMsg("注册失败");
         }
 
-       return r;
+        return r;
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public R login(Users user) {
+        R r = new R();
+        Users us = null;
+
+        try {
+            us = userService.findUserByTelAndPwd(user);
+            if (us != null) { //登录成功
+                r.setCode(200);
+                r.setMsg("登录成功");
+                r.setData(us);
+
+            } else { //登录账号或密码有误
+                r.setCode(500);
+                r.setMsg("登录账号或密码有误");
+            }
+
+        } catch (Exception e) {
+            r.setCode(500);
+            r.setMsg("系统开小差了，请联系管理员");
+            e.printStackTrace();
+        }
+
+        return r;
+    }
+
 }

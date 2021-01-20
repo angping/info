@@ -38,4 +38,17 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.addUser(user);
     }
+
+    @Override
+    public Users findUserByTelAndPwd(Users user) throws NoSuchAlgorithmException {
+
+
+            //密码加密：通过MD5加密
+            String new_pwd= MD5.getMD5(user.getUser_pwd()).toString();
+            //将加密后的密文再次赋给传递的对象，将原来的明文替换为加密后的密码
+            user.setUser_pwd(new_pwd);
+
+
+        return userMapper.findUserByTelAndPwd(user);
+    }
 }

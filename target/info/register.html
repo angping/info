@@ -6,10 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/register.css">
 	<link rel="shortcut icon" href="img/index/favicon.ico">
+	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<!--<script type="text/javascript" src="js/register.js"></script>-->
 	<!--引入jQuery插件-->
-	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+
 
 	<script type="text/javascript">
 		$(function () {  //先将文档加载进来
@@ -31,8 +32,6 @@
 
 							    //登录成功跳转
                                 alert(response.msg);
-                                console.log(response.msg);
-                                alert("注册成功");
 							   window.location.href="/login.html";
 
 							}
