@@ -37,23 +37,29 @@ public class UserController {
         R r = new R();
 
         try {
-            int result = userService.addUser(users);   //传递参数
-            if (result > 0) {//注册成功
-                //跳转登录页面 Servlet中如何跳转页面 1、重定向 2、转发
-                //  response.sendRedirect("login.html");
+            Users us = null;
+            us=userService.queryByUser_tel(users);
+            if (us !=null) {
+                r.setCode(500);
+                r.setMsg("用户已存在，请登录");
+            }else {
+                int result = userService.addUser(users);   //传递参数
+                if (result > 0) {//注册成功
+                    //跳转登录页面 Servlet中如何跳转页面 1、重定向 2、转发
+                    //  response.sendRedirect("login.html");
 
-                //ModelAndView modelAndView=new ModelAndView("/login.html");
-                // return modelAndView;
+                    //ModelAndView modelAndView=new ModelAndView("/login.html");
+                    // return modelAndView;
 
-                //return "响应页面地址";
-                //return "redirect:/login.html";  //重定向到登录页面，不走视图解析器（不走前缀和后缀）
+                    //return "响应页面地址";
+                    //return "redirect:/login.html";  //重定向到登录页面，不走视图解析器（不走前缀和后缀）
 
-                r.setCode(200);
-                r.setMsg("注册成功");
-                System.out.println("=====注册成功====");
-
-
+                    r.setCode(200);
+                    r.setMsg("注册成功");
+                    System.out.println("=====注册成功====");
+                }
             }
+
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("===系统开小差了，请联系管理员===");

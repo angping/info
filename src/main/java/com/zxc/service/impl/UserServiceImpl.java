@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.findUserByTelAndPwd(user);
     }
+
+    @Override
+    public Users queryByUser_tel(Users user) {
+        return userMapper.queryByUser_tel(user);
+    }
 }

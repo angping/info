@@ -29,5 +29,14 @@ public interface UserService {
      * @return
      */
     Users findUserByTelAndPwd(Users user) throws NoSuchAlgorithmException;
+
     //Users 返回的User信息 括号中传递的参数
+
+    /**
+     * 根据电话号码查询用户是否注册
+     * @param user
+     * @return
+     */
+    Users queryByUser_tel(Users user);
+
 }

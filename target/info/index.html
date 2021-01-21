@@ -17,7 +17,16 @@
         var user = sessionStorage.getItem('user');
         console.log(user);
         if (user !== null) {
-            $("#navTopRight").prepend(`	<li  class="topLinks"><a href="">欢迎您: `+ user + `!</a></li>  `)
+            $("#navTopRight").prepend(`
+					<li class="topLinks">
+					<div class="topNavDropdown">
+						<a class="topNavDropdownLink" href="">欢迎您: `+ user + `!</a>
+						<ul class="mySecondMemu" id="clientMemu">
+							<li class="myLinks serviseLink"><a href="logout.html">退出登录</a></li>
+						</ul>
+					</div>
+				</li>
+	  `)
         } else {
             $("#navTopRight").prepend(`
 				<li id="login" class="topLinks"><a  href="login.html">请登录</a></li>

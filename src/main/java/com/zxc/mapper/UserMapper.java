@@ -14,4 +14,6 @@ public interface UserMapper {
     int addUser(Users user);
 
     Users findUserByTelAndPwd(Users user);
+
+    Users queryByUser_tel(Users user);
 }

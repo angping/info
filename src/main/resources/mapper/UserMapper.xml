@@ -5,10 +5,14 @@
 
     <!--写crud对应的语句，实现具体操作-->
 
+    <!--查询用户是否已注册-->
+    <select id="queryByUser_tel" parameterType="com.zxc.pojo.Users" resultType="com.zxc.pojo.Users">
+        SELECT * FROM users WHERE user_tel=#{user_tel}
+    </select>
+
     <!--注册用户，将传递时参数添加到用户表中-->
     <insert id="addUser" parameterType="com.zxc.pojo.Users">
         INSERT INTO users(user_tel, user_email, user_pwd) VALUE (#{user_tel},#{user_email},#{user_pwd})
-
     </insert>
     
     <!--登录功能-->
