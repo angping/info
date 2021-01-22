@@ -9,8 +9,56 @@
 	<link rel="stylesheet" type="text/css" href="commonCss/footer.css">
 	<link rel="stylesheet" type="text/css" href="commonCss/fixedMenu.css">
 	<link rel="shortcut icon" href="img/index/favicon.ico">
-	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="js/goodsList.js"></script>
+
+	<script type="text/javascript">
+        $(function(){
+            var user = sessionStorage.getItem('user');
+            if (user !== null) {
+                $("#navTopRight").prepend(`
+					<li class="topLinks">
+					<div class="topNavDropdown">
+						<a class="topNavDropdownLink" href="">欢迎您: `+ user + `!</a>
+						<ul class="mySecondMemu" id="clientMemu">
+							<li class="myLinks serviseLink"><a href="logout.html">退出登录</a></li>
+						</ul>
+					</div>
+				</li>
+	  `)
+            } else {
+                $("#navTopRight").prepend(`
+				<li id="login" class="topLinks"><a  href="login.html">请登录</a></li>
+			    <li id="register" class="topLinks"><a href="register.html">注册</a></li>
+                  `)
+            }
+
+            $.ajax({
+				url:"/queryPhoneList",
+				type:"get",
+				dataType:"json",
+				success:function (response) {
+				    $.each(response.data,function (index,item) {
+
+                        console.log(response)
+                        $("#phoneBox").append(`
+						<li class="phonesList">
+							<a href="" title="">
+								<img src="${item.product_image_url}" alt="">
+								<p class="photoName">
+								${item.product_title}</p>
+								<p class="photoPrice">￥${item.product_unit_price}</p>
+							</a>
+						</li>
+					`)
+
+                    })
+
+
+                }
+			})
+        })
+	</script>
 
 </head>
 <body>
@@ -34,13 +82,11 @@
 									<li class="myLinks wondefulLink"><a href="">华为终端云空间</a></li>
 									<li class="myLinks wondefulLink"><a href="">开发者联盟</a></li>
 								</ul>
-							</div>						
+							</div>
 						</li>
 					</ul>
 
 					<ul id="navTopRight" class="r">
-						<li id="login" class="topLinks"><a  href="login.html">请登录</a></li>
-						<li id="register" class="topLinks"><a href="register.html">注册</a></li>
 						<li class="topLinks"><a href="">我的订单</a></li>
 						<li class="topLinks">
 							<div class="topNavDropdown">
@@ -122,7 +168,7 @@
 					</ul>
 				</div>
 		</nav>
-		<nav id="navBottom" class="t">			
+		<nav id="navBottom" class="t">
 			<div id="navBottomC" class="c">
 				<section id="navBottomLeft">
 					<a href="#" title="Vmall.com-华为商城">
@@ -173,67 +219,12 @@
 					</div>
 
 					<ul id="phoneBox">
-						<li class="phonesList">
-							<a href="" title="">
-								<img src="img/goodsList/secondPhone01.png" alt="">
-								<p class="photoName">
-								HUAWEI Mate 20</p>
-								<p class="photoPrice">￥2399</p>
-							</a>
-						</li>
-						<li class="phonesList">
-							<a href="" title="">
-								<img src="img/goodsList/secondPhone02.png" alt="">
-								<p class="photoName">
-								HUAWEI Mate 20</p>
-								<p class="photoPrice">￥2399</p>
-							</a>
-						</li>
-						<li class="phonesList">
-							<a href="" title="">
-								<img src="img/goodsList/secondPhone03.png" alt="">
-								<p class="photoName">
-								HUAWEI Mate 20</p>
-								<p class="photoPrice">￥2399</p>
-							</a>
-						</li>
-						<li class="phonesList">
-							<a href="" title="">
-								<img src="img/goodsList/secondPhone04.png" alt="">
-								<p class="photoName">
-								HUAWEI Mate 20</p>
-								<p class="photoPrice">￥2399</p>
-							</a>
-						</li>
-						<li class="phonesList">
-							<a href="" title="">
-								<img src="img/goodsList/secondPhone05.png" alt="">
-								<p class="photoName">
-								HUAWEI Mate 20</p>
-								<p class="photoPrice">￥2399</p>
-							</a>
-						</li>
-						<li class="phonesList">
-							<a href="" title="">
-								<img src="img/goodsList/secondPhone06.jpg" alt="">
-								<p class="photoName">
-								HUAWEI Mate 20</p>
-								<p class="photoPrice">￥2399</p>
-							</a>
-						</li>
-						<li class="phonesList">
-							<a href="" title="">
-								<img src="img/goodsList/secondPhone07.png" alt="">
-								<p class="photoName">
-								HUAWEI Mate 20</p>
-								<p class="photoPrice">￥2399</p>
-							</a>
-						</li>
+
 					</ul>
-					
+
 				</div>
 			</div>
-			
+
 		</nav>
 	</header><!-- /header -->
 
@@ -291,7 +282,7 @@
 			</section>
 
 
-		</div>		
+		</div>
 	</main>
 
 	<footer id="footer" class="t">
@@ -374,7 +365,7 @@
 					<i></i><span>在线客服</span>
 				</a></p>
 				<p class="serviceRightState">
-					<span class="l">关注Vmall:</span>	
+					<span class="l">关注Vmall:</span>
 					<a class="serviceRightStateIcon" href="" title=""><i></i></a>
 					<a class="serviceRightStateIcon" href="" title=""><i></i></a>
 					<a class="serviceRightStateIcon" href="" title=""><i></i></a>
