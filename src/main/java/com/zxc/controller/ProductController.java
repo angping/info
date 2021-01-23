@@ -39,4 +39,29 @@ public class ProductController {
 
         return r;
     }
+
+    /**
+     * 通过ID查询手机详情
+     * @param ProductId
+     * @return
+     */
+    @RequestMapping(value = "/PhoneDetails", method = RequestMethod.GET)
+    @ResponseBody
+    public R queryPhoneInfo(String ProductId){
+        System.out.println(ProductId);
+        R r=new R();
+
+        try{
+            Product_Info phoneDetails=productService.PhoneDetails(ProductId);
+            r.setCode(200);
+            r.setMsg("查询成功");
+            r.setData(phoneDetails);
+        }catch (Exception e){
+            r.setCode(500);
+            r.setMsg("查询失败");
+        }
+
+
+        return r;
+    }
 }

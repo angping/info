@@ -9,59 +9,142 @@
 	<link rel="stylesheet" type="text/css" href="commonCss/fixedMenu.css">
 	<link rel="stylesheet" type="text/css" href="css/goodsDetails.css">
 	<link rel="shortcut icon" href="img/index/favicon.ico">
-	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="js/goodsDetails.js"></script>
+	<script type="text/javascript">
+		$(function () {
+         var str = location.href; //获取到整个地址
+         var num = str.indexOf("=");
+         var id = str.substr(num + 1);
+         var ProductId = {ProductId:id};
+         var goodsnum=$("#goodsNum").val();
+$("#addGoods").click(function () {
+    goodsnum++;
+    console.log(goodsnum);
+});
+$("#subGoods").click(function () {
+    if(goodsnum>1)
+    goodsnum--;
+
+    console.log(goodsnum);
+});
+         $("#buyNow").click(function () {
+			 $("#buyNow").attr("href","orderList.html?id="+id+"&num="+goodsnum);
+             console.log(goodsnum);
+         })
+
+
+
+
+
+
+
+             $.ajax({
+                 url: "/PhoneDetails",
+                 type: "get",
+                 data: ProductId,
+                 dataType: "json",
+                 success: function (response) {
+                         $("#goodsPhoto").prepend(`
+	<div id="originalPicBox">
+					<img src="${response.data.product_image_url}" alt="">
+					<div id="square"></div>
+				</div>
+				`)
+
+                 $("#goodsInf").prepend(`
+
+				<h1 id="goodsName">${response.data.product_subtitle}</h1>
+				<p id="goodsDescribe">
+					<span>【年货节促销：限时直降100元】</span>
+					 IP67级防尘防水，8英寸全高清屏，立体声双扬声器，Type-C快充，4G大内存。
+				</p>
+				<div id="goodsAtivities">
+					<p>
+						<span class="goodsInfTitle goodsAtivitiesInf">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</span>
+						<span class="buyingPrice goodsAtivitiesInf">抢购价 ￥</span>
+						<span class="detailsPrice">¥${response.data.product_unit_price}</span>
+						<s class="originalPrice goodsAtivitiesInf">¥ ${response.data.product_unit_price+100}</s>
+					</p>
+					<p>
+						<span class="goodsInfTitle goodsAtivitiesInf">促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</span>
+						<span class="sign">限时特价</span>
+						<span class="explain">1.13-1.15 限时直降100元 </span>
+					</p>
+					<p id="persent">
+						<span class="goodsInfTitle goodsAtivitiesInf">&nbsp;</span>
+						<span class="sign">积分赠送</span>
+						<span class="explain"> 购买即赠商城积分，积分可抵现~ </span>
+					</p>
+				</div>
+				<div id="serviceNote">
+					<p>
+						<span class="goodsInfTitle goodsAtivitiesInf">服务说明</span>
+						<a href="#" title="" class="chooseBox" id="location">广东 > 湛江 > 赤坎区</a>
+						<span class="explain" id="payExplain">
+							<span class="red">现货</span>
+							，今天23:59前付款，预计1月16日（明天）送达
+						</span>
+					</p>
+					<p>
+						<span id="saleState" class="explain">
+							已满48元已免运费<em></em>由华为商城负责发货，并提供售后服务
+						</span>
+					</p>
+				</div>
+				<p id="goodsId">
+					<span class="goodsInfTitle goodsAtivitiesInf">商品编码</span>
+					<span class="explain">
+								2701010009501
+					</span>
+				</p>
+				<p id="chooseColor">
+					<span class="goodsInfTitle goodsAtivitiesInf">选择颜色</span>
+					<span id="silverGoods" class="goodsKind active" title="皓月银">
+						<img src="img/goodsDetails/haoyueying.png" alt="">
+						<span>皓月银</span>
+					</span>
+					<span id="goldGoods" class="goodsKind" title="香槟金">
+						<img src="img/goodsDetails/xiangjinbin.png" alt="">
+						<span>香槟金</span>
+					</span>
+				</p>
+				<div id="chooseVison">
+					<span class="goodsInfTitle goodsAtivitiesInf">选择版本</span>
+					<ul>
+						<li class="active visonKind">WiFi 4GB+64GB</li>
+						<li class="visonKind">全网通 4GB+64GB</li>
+						<li class="visonKind">WiFi 4GB+128GB</li>
+					</ul>
+				</div>
+				<div id="choosePlan">
+					<span class="goodsInfTitle goodsAtivitiesInf">选择套餐</span>
+					<span class="visonKind" id="plan">官方标配</span>
+				</div>
+				<div id="sureServer">
+					<span class="goodsInfTitle goodsAtivitiesInf">保障服务</span>
+					<span class="chooseBox active">延长服务宝1年 ￥98</span>
+					<span class="chooseBox">碎屏服务宝1年 ￥109</span>
+				</div>
+				<div id="recommend">
+					<span class="goodsInfTitle goodsAtivitiesInf">推荐</span>
+					<a href="#" title="" class="">荣耀Waterplay</a>
+				</div>
+				<div id="chooseGoods">
+					<span class="goodsInfTitle goodsAtivitiesInf">已选择商品:</span>
+					<span id="chooseGoodsDetail">皓月银 / WiFi 4GB+64GB / 官方标配 </span>
+				</div>
+
+                         `)
+
+                 }
+             });
+         })
+	</script>
 </head>
 <body>
 	<header id="header" class="t">
-		<!-- <nav id="navTop" class="t">
-			<div id="navTopC" class="c">
-				<ul id="navTopLeft" class="l">
-					<li class="topLinks" id="indexPage"><a href="index.html">首页</a></li>
-					<li class="topLinks"><a href="">华为官网</a></li>
-					<li class="topLinks"><a href="">荣耀官网</a></li>
-					<li class="topLinks"><a href="">花粉俱乐部</a></li>
-					<li class="topLinks"><a href="">V码(优购码)</a></li>
-					<li class="topLinks"><a href="">企业购</a></li>
-					<li class="topLinks"><a href="">Select Region</a></li></li>
-					<li class="topLinks" id="moreWonderful">
-						<div class="topNavDropdown" id="moreWonderfulBox">
-							<a class="topNavDropdownLink" href="">更多精彩</a>
-							<ul id="moreWonderfulMemu">
-								<li class="wondefulLink"><a href="">EMUI</a></li>
-								<li class="wondefulLink"><a href="">应用市场</a></li>
-								<li class="wondefulLink"><a href="">华为终端云空间</a></li>
-								<li class="wondefulLink"><a href="">开发者联盟</a></li>
-							</ul>
-						</div>						
-					</li>
-				</ul>
 
-				<ul id="navTopRight" class="r">
-					<li id="login" class="topLinks"><a  href="login.html">请登录</a></li>
-					<li id="register" class="topLinks"><a href="register.html">注册</a></li>
-					<li class="topLinks"><a href="">我的订单</a></li>
-					<li class="topLinks">
-						<div class="topNavDropdown">
-							<a class="topNavDropdownLink" href="">客户服务</a>
-						</div>
-					</li>
-					<li class="topLinks">
-						<div class="topNavDropdown">
-							<a class="topNavDropdownLink" href="">网站导航</a>
-						</div>
-					</li>
-					<li class="topLinks">
-						<div class="topNavDropdown">
-							<a class="topNavDropdownLink" href="">手机版</a>
-						</div>
-					</li>
-					<li id="buyCarBox" class="topLinks"><a href="" id="buyCarLink">
-						购物车(0)
-					</a></li>
-				</ul>
-			</div>
-		</nav> -->
 		<nav id="navTop" class="t">
 				<div id="navTopC" class="c">
 					<ul id="navTopLeft" class="l">
@@ -288,132 +371,32 @@
 			<a href="#" title="">首页</a>
 			<a href="goodsList.html" title="">&nbsp;>&nbsp;&nbsp;笔记本 & 平板</a>
 			<a href="" title="">&nbsp;>&nbsp;&nbsp;平板电脑</a>
-			<spana>&nbsp;>&nbsp;&nbsp;荣耀Waterplay8英寸 防水影音平板 4GB+64GB WiFi版（皓月银）</span>
+			<span>&nbsp;>&nbsp;&nbsp;荣耀Waterplay8英寸 防水影音平板 4GB+64GB WiFi版（皓月银）</span>
 		</section>
 		
-		<section id="goodDetailsTop" class="c">
+		<div id="goodDetailsTop" class="c">
+
+
 			<div id="goodsPhoto">
-				<div id="originalPicBox">
-					<img src="img/goodsDetails/zoomTool01.png" alt="">	
-					<div id="square"></div>	
-				</div>
 
-				<div id="zoomToolBox">
-					<img src="img/goodsDetails/zoomTool01.png" alt="">
-				</div>
-
-				<div id="smallPicList">
-					<div class="moveBtn" id="before"></div>
-					<div  class="moveBtn" id="next"></div>
-					
-					<div id="zoomToolbtnsFBox">
-						<ul id="zoomToolbtnsBox">
-							<li class="zoomToolbtns"><a href="#"><img class="zoomToolbtnsPic" src="img/goodsDetails/zoomToolBtns01.png" alt=""></a></li>
-							<li class="zoomToolbtns"><a href=""><img class="zoomToolbtnsPic" src="img/goodsDetails/zoomTool02.png" alt=""></a></li>
-							<li class="zoomToolbtns"><a href=""><img class="zoomToolbtnsPic" src="img/goodsDetails/zoomTool03.png" alt=""></a></li>
-							<li class="zoomToolbtns"><a href=""><img class="zoomToolbtnsPic" src="img/goodsDetails/zoomTool04.png" alt=""></a></li>
-							<li class="zoomToolbtns"><a href=""><img class="zoomToolbtnsPic" src="img/goodsDetails/zoomTool05.png" alt=""></a></li>
-							<li class="zoomToolbtns"><a href=""><img class="zoomToolbtnsPic" src="img/goodsDetails/zoomTool06.png" alt=""></a></li>
-						</ul>
-					</div>
-				</div>
 			</div>
-
 			<div id="goodsInf">
-				<h1 id="goodsName">荣耀Waterplay8英寸 防水影音平板 4GB+64GB  WiFi版（皓月银）</h1>
-				<p id="goodsDescribe">
-					<span>【年货节促销：限时直降100元】</span>
-					 IP67级防尘防水，8英寸全高清屏，立体声双扬声器，Type-C快充，4G大内存。
+
+			<div id="buyBtn">
+				<input id="goodsNum" type="text" name="" value="1">
+				<p class="l">
+					<span id="addGoods" class="changeNum" href="#" title="">+</span>
+					<span id="subGoods" class="changeNum sliderBtnsDisabled" href="#" title="">−</span>
 				</p>
-				<div id="goodsAtivities">
-					<p>
-						<span class="goodsInfTitle goodsAtivitiesInf">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</span>
-						<span class="buyingPrice goodsAtivitiesInf">抢购价 ￥</span>
-						<span class="detailsPrice">1399.00</span>
-						<s class="originalPrice goodsAtivitiesInf">¥ 1499</s>
-					</p>
-					<p>
-						<span class="goodsInfTitle goodsAtivitiesInf">促&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销</span>
-						<span class="sign">限时特价</span>
-						<span class="explain">1.13-1.15 限时直降100元 </span>
-					</p>
-					<p id="persent">
-						<span class="goodsInfTitle goodsAtivitiesInf">&nbsp;</span>
-						<span class="sign">积分赠送</span>
-						<span class="explain"> 购买即赠商城积分，积分可抵现~ </span>
-					</p>
-				</div>
-				<div id="serviceNote">				
-					<p>
-						<span class="goodsInfTitle goodsAtivitiesInf">服务说明</span>
-						<a href="#" title="" class="chooseBox" id="location">广东 > 湛江 > 赤坎区</a>
-						<span class="explain" id="payExplain">
-							<span class="red">现货</span>
-							，今天23:59前付款，预计1月16日（明天）送达
-						</span>
-					</p>
-					<p>
-						<span id="saleState" class="explain">
-							已满48元已免运费<em></em>由华为商城负责发货，并提供售后服务
-						</span>
-					</p>
-				</div>
-				<p id="goodsId">
-					<span class="goodsInfTitle goodsAtivitiesInf">商品编码</span>
-					<span class="explain">
-								2701010009501
-					</span>
-				</p>
-				<p id="chooseColor">
-					<span class="goodsInfTitle goodsAtivitiesInf">选择颜色</span>
-					<span id="silverGoods" class="goodsKind active" title="皓月银">
-						<img src="img/goodsDetails/haoyueying.png" alt="">
-						<span>皓月银</span>
-					</span>
-					<span id="goldGoods" class="goodsKind" title="香槟金">
-						<img src="img/goodsDetails/xiangjinbin.png" alt="">
-						<span>香槟金</span>
-					</span>
-				</p>
-				<div id="chooseVison">
-					<span class="goodsInfTitle goodsAtivitiesInf">选择版本</span>
-					<ul>
-						<li class="active visonKind">WiFi 4GB+64GB</li>
-						<li class="visonKind">全网通 4GB+64GB</li>
-						<li class="visonKind">WiFi 4GB+128GB</li>
-					</ul>
-				</div>
-				<div id="choosePlan">
-					<span class="goodsInfTitle goodsAtivitiesInf">选择套餐</span>
-					<span class="visonKind" id="plan">官方标配</span>
-				</div>
-				<div id="sureServer">
-					<span class="goodsInfTitle goodsAtivitiesInf">保障服务</span>
-					<span class="chooseBox active">延长服务宝1年 ￥98</span>
-					<span class="chooseBox">碎屏服务宝1年 ￥109</span>
-				</div>
-				<div id="recommend">
-					<span class="goodsInfTitle goodsAtivitiesInf">推荐</span>
-					<a href="#" title="" class="">荣耀Waterplay</a>
-				</div>
-				<div id="chooseGoods">
-					<span class="goodsInfTitle goodsAtivitiesInf">已选择商品:</span>
-					<span id="chooseGoodsDetail">皓月银 / WiFi 4GB+64GB / 官方标配 </span>
-				</div>
-				<div id="buyBtn">
-					<input id="goodsNum" type="text" name="" value="1">
-					<p class="l">
-						<span id="addGoods" class="changeNum" href="#" title="">+</span>
-						<span id="subGoods" class="changeNum sliderBtnsDisabled" href="#" title="">−</span>
-					</p>
-					<a class="buyBtns" id="addBuycar" href="" title=""><span>加入购物车</span></a>
-					<a class="buyBtns" id="buyNow" href="" title=""><span>立即下单</span></a>
-				</div>
+				<a class="buyBtns" id="addBuycar" href="" title=""><span>加入购物车</span></a>
+				<a class="buyBtns" id="buyNow" href="" title=""><span>立即下单</span></a>
 			</div>
 			<div id="cornerIconBox">
 				<i class="cornerIcon"></i>
 				<i class="cornerIcon"></i>
 			</div>
+		</div>
+		</div>
 		</section>
 
 		<section id="goodDetailsBottom" class="t">

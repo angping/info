@@ -125,6 +125,13 @@
       <artifactId>json</artifactId>
       <version>20180130</version>
     </dependency>
+
+    <!--支付宝支付功能相关-->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>4.8.73.ALL</version>
+    </dependency>
   </dependencies>
 
   <build>

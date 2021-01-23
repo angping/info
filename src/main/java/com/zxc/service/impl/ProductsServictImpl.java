@@ -25,4 +25,9 @@ public class ProductsServictImpl implements ProductService {
     public List<Product_Info> queryPhoneList() {
         return productsMapper.queryPhoneList();
     }
+
+    @Override
+    public Product_Info PhoneDetails(String productId) {
+        return productsMapper.PhoneDetails(productId);
+    }
 }

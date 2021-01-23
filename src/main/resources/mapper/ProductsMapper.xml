@@ -10,4 +10,10 @@
         select * from product_info;
     </select>
 
+
+    <!--查询单个商品信息-->
+    <select id="PhoneDetails" resultType="com.zxc.pojo.Product_Info">
+        select * from product_info WHERE product_id=#{productId};
+    </select>
+
 </mapper>

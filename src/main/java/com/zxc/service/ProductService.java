@@ -17,4 +17,12 @@ public interface ProductService {
      * @return
      */
     List<Product_Info> queryPhoneList();
+
+    /**
+     * 查询单个手机详情
+     * @param productId
+     * @return
+     */
+
+    Product_Info PhoneDetails(String productId);
 }

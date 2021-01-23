@@ -26,6 +26,9 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.5" />
           <element id="library" level="project" name="Maven: org.json:json:20180130" />
+          <element id="library" level="project" name="Maven: com.alipay.sdk:alipay-sdk-java:4.8.73.ALL" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.50" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.62" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -14,5 +14,7 @@ import java.util.List;
 public interface ProductsMapper {
 
     List<Product_Info> queryPhoneList();
+
+    Product_Info PhoneDetails(String productId);
 }
 
