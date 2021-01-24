@@ -34,9 +34,18 @@
 				 $("#product_unit_price").append(response.data.product_unit_price);
 				 $("#goods_num").append(num);
 				 $("#pay_total_price").append(response.data.product_unit_price*num);
-             }
-		 })
 
+
+				 var out_trade_no= (new Date()).valueOf();
+				 console.log(out_trade_no);
+				 $("#pay").prepend(`
+				 			<input type="hidden" value="${out_trade_no}" id="out_trade_no" name="out_trade_no">
+							<input type="hidden" value="${response.data.product_title}" id="subject" name="subject">
+							<input type="hidden" value="${response.data.product_unit_price*num}" id="total_amount" name="total_amount">
+							<input type="hidden" value="${response.data.product_subtitle}" id="body" name="body">
+				 `)
+             }
+		 });
 	</script>
 </head>
 <body>
@@ -328,14 +337,16 @@
 					<span class="goodsInfTitle goodsAtivitiesInf" >总价</span>
 					<span class="detailsPrice" id="pay_total_price">¥</span>
 				</p>
-				<div id="buyBtn">
-					<a class="buyBtns" id="buyNow" href="" title=""><span>立即支付</span></a>
-				</div>
+				<form id="pay" action="/alipay" method="get">
+						<!--<a class="buyBtns" id="buyNow" href="orderList.html" title=""><span>立即下单</span></a>-->
+						<button type="submit"  id="buyNow" class="buyBtns"><span>立即下单</span></button>
+				</form>
 			</div>
 			<div id="cornerIconBox">
 				<i class="cornerIcon"></i>
 				<i class="cornerIcon"></i>
 			</div>
+
 		</section>
 
 	</main>
