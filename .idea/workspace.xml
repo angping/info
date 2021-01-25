@@ -7,17 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80ea248a-a3f4-4d19-bc92-dd7e7d0f4720" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/controller/NotifyController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/controller/OrderController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/mapper/OrderMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/service/OrderService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/service/impl/OrderServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/utils/OrderUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrderMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/info.war" afterPath="$PROJECT_DIR$/target/info.war" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/zxc/controller/AliPayController.java" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/controller/AliPayController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/zxc/utils/AliPayConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/zxc/utils/AliPayConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/info/css/base.css" afterPath="$PROJECT_DIR$/target/info/css/base.css" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -685,7 +676,7 @@
       <workItem from="1611487415109" duration="3360000" />
       <workItem from="1611534403276" duration="1152000" />
       <workItem from="1611535748170" duration="6035000" />
-      <workItem from="1611573306867" duration="885000" />
+      <workItem from="1611573306867" duration="961000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1611023431120</created>
@@ -729,11 +720,18 @@
       <option name="project" value="LOCAL" />
       <updated>1611481801046</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="订单后台待完善">
+      <created>1611575293264</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1611575293264</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91587000" />
+    <option name="totallyTimeSpent" value="91663000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="265" y="0" width="1697" height="1047" extended-state="0" />
@@ -821,7 +819,8 @@
     <MESSAGE value="商品列表" />
     <MESSAGE value="订单列表" />
     <MESSAGE value="支付功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="支付功能" />
+    <MESSAGE value="订单后台待完善" />
+    <option name="LAST_COMMIT_MESSAGE" value="订单后台待完善" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -978,6 +977,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="48" column="54" lean-forward="false" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1067,6 +1069,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,6 +1077,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
           <caret line="35" column="71" lean-forward="false" selection-start-line="35" selection-start-column="71" selection-end-line="35" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
