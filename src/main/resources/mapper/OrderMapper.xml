@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxc.mapper.OrderMapper">
+
+    <!--写crud对应的语句，实现具体操作-->
+
+    <!--生成订单表-->
+   <insert id="generateOrder">
+       INSERT INTO orders (order_id, pay_total_price, create_time, user_id) VALUES(#{order_id},#{pay_total_price},#{create_time},#{user_id})
+   </insert>
+
+
+
+    <!--生成订单详情表-->
+    <insert id="generateOrderDetail">
+        INSERT INTO order_details(order_id, product_id, quantity, unit_price) VALUES (#{order_id},#{product_id},#{quantity},#{unit_price})
+    </insert>
+
+</mapper>

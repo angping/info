@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AliPayController {
 
+
     @RequestMapping(value = "/alipay",method = RequestMethod.GET,produces = "text/html;charset=utf-8")
     @ResponseBody
     public String aliPay(String out_trade_no,String subject,String total_amount,String body){
